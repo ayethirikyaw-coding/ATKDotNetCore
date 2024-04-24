@@ -14,7 +14,8 @@ namespace ATKDotNetCore.ConsoleApp
             DataSource = ".",
             InitialCatalog = "ATKDotNetCore",
             UserID = "sa",
-            Password = "sa@123"
+            Password = "sa@123",
+            TrustServerCertificate = true
         };
     }
 }
