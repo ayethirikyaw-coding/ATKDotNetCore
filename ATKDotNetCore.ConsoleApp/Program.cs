@@ -1,4 +1,6 @@
-﻿using ATKDotNetCore.ConsoleApp;
+﻿using ATKDotNetCore.ConsoleApp.AdoDotNetExamples;
+using ATKDotNetCore.ConsoleApp.DapperExamples;
+using ATKDotNetCore.ConsoleApp.EFCoreExamples;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -37,7 +39,7 @@ Console.WriteLine("Hello, World!");
 ///
 //AdoDotNetExample adoDotNetExample = new AdoDotNetExample();
 ////adoDotNetExample.Read();
-////adoDotNetExample.Create("title", "author", "content");
+//adoDotNetExample.Create("title", "author", "content");
 ////adoDotNetExample.Update(11, "test title", "test author", "test content");
 ////adoDotNetExample.Delete(11);
 //adoDotNetExample.Edit(11);

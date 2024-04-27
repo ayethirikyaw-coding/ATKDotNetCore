@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATKDotNetCore.ConsoleApp
+namespace ATKDotNetCore.ConsoleApp.Dtos
 {
     [Table("tbl_Blog")]
     public class BlogDto
@@ -18,6 +18,6 @@ namespace ATKDotNetCore.ConsoleApp
 
         public string BlogAuthor { get; set; }
 
-        public string BlogContent {  get; set; }    
+        public string BlogContent { get; set; }
     }
 }

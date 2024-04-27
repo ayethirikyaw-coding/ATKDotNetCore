@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Query;
+﻿using ATKDotNetCore.ConsoleApp.Dtos;
+using Microsoft.EntityFrameworkCore.Query;
 using Microsoft.EntityFrameworkCore.Update.Internal;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATKDotNetCore.ConsoleApp
+namespace ATKDotNetCore.ConsoleApp.EFCoreExamples
 {
     internal class EFCoreExample
     {
@@ -16,13 +17,13 @@ namespace ATKDotNetCore.ConsoleApp
             //Read();
             //Edit(1);
             //Edit(11);
-            //Create("title 2", "author 2", "content 2");
+            Create("title 2", "author 2", "content 2");
             //Update(15, "title", "author", "content");
-            Delete(15);
+            //Delete(15);
         }
 
         private void Read()
-        {  
+        {
             var lst = db.Blogs.ToList();
             foreach (BlogDto item in lst)
             {
@@ -37,7 +38,7 @@ namespace ATKDotNetCore.ConsoleApp
         private void Edit(int id)
         {
             var item = db.Blogs.FirstOrDefault(x => x.BlogId == id);
-            if(item is null)
+            if (item is null)
             {
                 Console.WriteLine("No data found");
                 return;
@@ -66,7 +67,7 @@ namespace ATKDotNetCore.ConsoleApp
         private void Update(int id, string title, string author, string content)
         {
             var item = db.Blogs.FirstOrDefault(x => x.BlogId == id);
-            if(item is null)
+            if (item is null)
             {
                 Console.WriteLine("No data found");
                 return;
@@ -85,7 +86,7 @@ namespace ATKDotNetCore.ConsoleApp
         private void Delete(int id)
         {
             var item = db.Blogs.FirstOrDefault(x => x.BlogId == id);
-            if(item is null)
+            if (item is null)
             {
                 Console.WriteLine("No data found");
                 return;

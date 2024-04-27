@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATKDotNetCore.ConsoleApp
+namespace ATKDotNetCore.ConsoleApp.Services
 {
     internal static class ConnectionStrings
     {

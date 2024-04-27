@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection.Metadata;
 
-namespace ATKDotNetCore.ConsoleApp
+namespace ATKDotNetCore.ConsoleApp.AdoDotNetExamples
 {
     internal class AdoDotNetExample
     {
@@ -61,7 +61,7 @@ namespace ATKDotNetCore.ConsoleApp
 
             connection.Close();
 
-            if(dt.Rows.Count == 0)
+            if (dt.Rows.Count == 0)
             {
                 Console.WriteLine("No data found");
                 return;
@@ -74,7 +74,7 @@ namespace ATKDotNetCore.ConsoleApp
             Console.WriteLine("Blog Author => " + dr["BlogAuthor"]);
             Console.WriteLine("Blog Content => " + dr["BlogContent"]);
             Console.WriteLine("---------------------------------------------");
-            
+
         }
 
         public void Create(string title, string author, string content)
@@ -98,7 +98,7 @@ namespace ATKDotNetCore.ConsoleApp
             connection.Close();
 
             string message = result > 0 ? "Saving successful.." : "Saving failed";
-            Console.WriteLine(message);           
+            Console.WriteLine(message);
         }
 
         public void Update(int id, string title, string author, string content)
