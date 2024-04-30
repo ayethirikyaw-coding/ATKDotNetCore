@@ -1,5 +1,6 @@
 ﻿using ATKDotNetCore.ConsoleApp.Services;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace ATKDotNetCore.ConsoleApp.Dtos
         {
             optionsBuilder.UseSqlServer(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
         }
+
         public DbSet<BlogDto> Blogs { get; set; }
     }
 }
