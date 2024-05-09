@@ -13,7 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documents", "Documents", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATKDotNetCore.RestApi", "ATKDotNetCore.RestApi\ATKDotNetCore.RestApi.csproj", "{BA060910-4C56-4C71-986C-5920936B3DCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATKDotNetCore.Shared", "ATKDotNetCore.Shared\ATKDotNetCore.Shared.csproj", "{981EDA7A-3FDC-4F33-A026-EA7002BF8EA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATKDotNetCore.Shared", "ATKDotNetCore.Shared\ATKDotNetCore.Shared.csproj", "{981EDA7A-3FDC-4F33-A026-EA7002BF8EA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATKDotNetCore.RestApiWithNLayer", "ATKDotNetCore.RestApiWithNLayer\ATKDotNetCore.RestApiWithNLayer.csproj", "{80369165-308F-46CE-80F3-B53CBF55DE5E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{981EDA7A-3FDC-4F33-A026-EA7002BF8EA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{981EDA7A-3FDC-4F33-A026-EA7002BF8EA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{981EDA7A-3FDC-4F33-A026-EA7002BF8EA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80369165-308F-46CE-80F3-B53CBF55DE5E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80369165-308F-46CE-80F3-B53CBF55DE5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80369165-308F-46CE-80F3-B53CBF55DE5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80369165-308F-46CE-80F3-B53CBF55DE5E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

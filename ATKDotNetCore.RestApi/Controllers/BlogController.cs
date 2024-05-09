@@ -86,7 +86,6 @@ namespace ATKDotNetCore.RestApi.Controllers
             }
        
             int result = _context.SaveChanges();
-
             string message = result > 0 ? "Updating successful.." : "Updating failed";
             return Ok(message);
         }
