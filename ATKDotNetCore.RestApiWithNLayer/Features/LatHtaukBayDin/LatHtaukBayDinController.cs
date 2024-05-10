@@ -35,6 +35,13 @@ namespace ATKDotNetCore.RestApiWithNLayer.Features.LatHtaukBayDin
             var model = await GetDataAsync();
             return Ok(model.answers.FirstOrDefault(x => x.questionNo == questionNo && x.answerNo == no));
         }
+
+        [HttpGet("{no}")]
+        public async Task<IActionResult> Answers2(int no)
+        {
+            var model = await GetDataAsync();
+            return Ok(model.answers.FirstOrDefault(x => x.answerNo == no));
+        }
     }
 
     public class LatHtaukBayDin
