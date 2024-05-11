@@ -16,7 +16,11 @@ namespace ATKDotNetCore.ConsoleAppHttpClientExamples
             //await EditAsync(100);
             //await CreateAsync("title", "author 2", "content 2");
             //await EditAsync(30);
-            await UpdateAsync(30, "title 2", "author 2", "content 2");
+            //await UpdateAsync(30, "title 2", "author 2", "content 2");
+            //await EditAsync(30);
+            //await PatchAsync(30, "title1", null, null);
+            //await PatchAsync(30, "", "author3", "");
+            await PatchAsync(30, "", "author", "content");
             await EditAsync(30);
         }
 
@@ -91,6 +95,27 @@ namespace ATKDotNetCore.ConsoleAppHttpClientExamples
 
             HttpContent httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
             var response = await _client.PutAsync($"{_blogEndpoint}/{id}", httpContent);
+            if (response.IsSuccessStatusCode)
+            {
+                string message = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(message);
+            }
+        }
+
+        private async Task PatchAsync(int id, string? title, string? author, string? content)
+        {
+            BlogDto blog = new BlogDto()
+            {
+                BlogTitle = title,
+                BlogAuthor = author,
+                BlogContent = content
+            }; // C# object
+
+            //To json
+            string blogJson = JsonConvert.SerializeObject(blog);
+
+            HttpContent httpContent = new StringContent(blogJson, Encoding.UTF8, Application.Json);
+            var response = await _client.PatchAsync($"{_blogEndpoint}/{id}", httpContent);
             if (response.IsSuccessStatusCode)
             {
                 string message = await response.Content.ReadAsStringAsync();
