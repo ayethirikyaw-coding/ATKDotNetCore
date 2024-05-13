@@ -17,8 +17,11 @@ internal class RestClientExample
         //await EditAsync(100);
         //await CreateAsync("title 2", "author 2", "content 2");
         //await EditAsync(31);
-        await UpdateAsync(31, "title", "author", "content");
-        await EditAsync(31);
+        //await UpdateAsync(31, "title", "author", "content");
+        //await EditAsync(31);
+        //await PatchAsync(30, "", null, "content3");
+        //await PatchAsync(30, "author2");
+        await EditAsync(30);
     }
 
     private async Task ReadAsync()
@@ -91,6 +94,25 @@ internal class RestClientExample
         }; // C# object
 
         RestRequest restRequest = new RestRequest($"{_blogEndpoint}/{id}", Method.Put);
+        restRequest.AddJsonBody(blog);
+        var response = await _client.ExecuteAsync(restRequest);
+        if (response.IsSuccessStatusCode)
+        {
+            string message = response.Content!;
+            Console.WriteLine(message);
+        }
+    }
+
+    private async Task PatchAsync(int id, string? title, string? author, string? content)
+    {
+        BlogDto blog = new BlogDto()
+        {
+            BlogTitle = title,
+            BlogAuthor = author,
+            BlogContent = content
+        }; // C# object
+
+        RestRequest restRequest = new RestRequest($"{_blogEndpoint}/{id}", Method.Patch);
         restRequest.AddJsonBody(blog);
         var response = await _client.ExecuteAsync(restRequest);
         if (response.IsSuccessStatusCode)
