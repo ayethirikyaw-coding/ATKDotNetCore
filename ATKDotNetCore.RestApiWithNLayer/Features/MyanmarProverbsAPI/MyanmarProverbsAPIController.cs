@@ -6,6 +6,7 @@ namespace ATKDotNetCore.RestApiWithNLayer.Features.MyanmarProverbsAPI;
 [ApiController]
 public class MyanmarProverbsAPIController : ControllerBase
 {
+
     private async Task<Tbl_Mmproverbs> GetDataFromApi()
     {
         //HttpClient httpClient = new HttpClient();
