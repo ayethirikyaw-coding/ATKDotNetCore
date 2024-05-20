@@ -1,5 +1,4 @@
 ﻿using ATKDotNetCore.ConsoleApp.Services;
-using ATKDotNetCore.PizzaApi.Models;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
@@ -34,6 +33,23 @@ public class PizzaModel
 
     [Column("Price")]
     public decimal Price { get; set; }
+}
+
+[Table("Tbl_PizzaExtra")]
+public class PizzaExtraModel
+{
+    [Key]
+    [Column("PizzaExtraId")]
+    public int Id { get; set; }
+
+    [Column("PizzaExtraName")]
+    public string Name { get; set; }
+
+    [Column("Price")]
+    public decimal Price { get; set; }
+
+    [NotMapped]
+    public string PriceStr { get { return "$ " + Price; } }
 }
 
 public class OrderRequest
