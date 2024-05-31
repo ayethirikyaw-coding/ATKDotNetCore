@@ -15,12 +15,12 @@ namespace ATKDotNetCore.ConsoleApp.DapperExamples
     {
         public void Run()
         {
-            //Read();
+            Read();
             //Edit(1);
             //Edit(11);
             //Create("title", "author", "content");
             //Update(14, "title2", "author2", "content2");
-            Delete(14);
+            //Delete(14);
         }
 
         private void Read()

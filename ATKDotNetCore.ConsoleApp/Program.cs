@@ -47,12 +47,12 @@ Console.WriteLine("Hello, World!");
 
 ///Dapper CRUD
 ///
-//DapperExample dapperExample = new DapperExample();
-//dapperExample.Run();
+DapperExample dapperExample = new DapperExample();
+dapperExample.Run();
 
 ///EFCore CRUD
 ///
-EFCoreExample eFCoreExample = new EFCoreExample();
-eFCoreExample.Run();
+//EFCoreExample eFCoreExample = new EFCoreExample();
+//eFCoreExample.Run();
 
 Console.ReadKey();

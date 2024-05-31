@@ -10,4 +10,16 @@ internal class BlogQuery
            (@BlogTitle
            ,@BlogAuthor
            ,@BlogContent)";
+
+    public static string BlogListQuery = @"SELECT [BlogId]
+      ,[BlogTitle]
+      ,[BlogAuthor]
+      ,[BlogContent]
+  FROM [dbo].[Tbl_Blog]";
+
+    public static string BlogListUpdate = @"UPDATE [dbo].[Tbl_Blog]
+   SET [BlogTitle] = @BlogTitle
+      ,[BlogAuthor] = @BlogAuthor
+      ,[BlogContent] = @BlogContent
+ WHERE BlogId = @BlogId";
 }
