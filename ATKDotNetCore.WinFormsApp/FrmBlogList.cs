@@ -30,11 +30,14 @@ public partial class FrmBlogList : Form
 
     private void dgvData_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
-        if (e.RowIndex == -1) return;
-
-        var blogId = Convert.ToInt32(dgvData.Rows[e.RowIndex].Cells["colId"].Value);
         //int columnIndex = e.ColumnIndex;
         //int rowIndex = e.RowIndex;
+
+        if (e.RowIndex == -1) return;
+
+        #region If Case
+
+        var blogId = Convert.ToInt32(dgvData.Rows[e.RowIndex].Cells["colId"].Value);
 
         if (e.ColumnIndex == (int)EnumFormControlType.Edit)
         {
@@ -43,13 +46,41 @@ public partial class FrmBlogList : Form
 
             BlogList();
         }
-        else if(e.ColumnIndex == (int)EnumFormControlType.Delete)
+        else if (e.ColumnIndex == (int)EnumFormControlType.Delete)
         {
             var dialogResult = MessageBox.Show("Are you sure to delete?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dialogResult != DialogResult.Yes) return;
-    
+
             DeleteBlog(blogId);
-        }                        
+        }
+
+        #endregion
+
+        #region Switch Case
+
+        int index = e.ColumnIndex;
+        EnumFormControlType enumFormControlType = (EnumFormControlType)index;
+        switch (enumFormControlType)
+        {
+            case EnumFormControlType.Edit:
+                FrmBlog frm = new FrmBlog(blogId);
+                frm.ShowDialog();
+
+                BlogList();
+                break;
+            case EnumFormControlType.Delete:
+                var dialogResult = MessageBox.Show("Are you sure to delete?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (dialogResult != DialogResult.Yes) return;
+
+                DeleteBlog(blogId);
+                break;
+            case EnumFormControlType.None:
+            default:
+                break;
+        }
+
+        #endregion
+
     }
 
     private void DeleteBlog(int id)
