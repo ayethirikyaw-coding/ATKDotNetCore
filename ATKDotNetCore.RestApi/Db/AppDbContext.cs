@@ -9,13 +9,19 @@ using System.Threading.Tasks;
 
 namespace ATKDotNetCore.RestApi.Db
 {
-    internal class AppDbContext : DbContext
+    public class AppDbContext : DbContext
     {
-        //Configure database connection
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public AppDbContext(DbContextOptions options) : base(options)
         {
-            optionsBuilder.UseSqlServer(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+
         }
+
+        //Configure database connection
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+        //}
+
         public DbSet<BlogModel> Blogs { get; set; }
     }
 }

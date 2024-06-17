@@ -11,11 +11,15 @@ namespace ATKDotNetCore.ConsoleApp.Dtos
 {
     internal class AppDbContext : DbContext
     {
-        //Configure database connection
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public AppDbContext(DbContextOptions options) : base(options)
         {
-            optionsBuilder.UseSqlServer(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
         }
+
+        //Configure database connection
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+        //}
 
         public DbSet<BlogDto> Blogs { get; set; }
     }

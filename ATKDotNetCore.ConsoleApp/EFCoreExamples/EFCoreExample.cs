@@ -11,13 +11,21 @@ namespace ATKDotNetCore.ConsoleApp.EFCoreExamples
 {
     internal class EFCoreExample
     {
-        private readonly AppDbContext db = new AppDbContext();
+        //private readonly AppDbContext db = new AppDbContext();
+
+        private readonly AppDbContext db;
+
+        public EFCoreExample(AppDbContext db)
+        {
+            this.db = db;
+        }
+
         public void Run()
         {
-            //Read();
+            Read();
             //Edit(1);
             //Edit(11);
-            Create("title 2", "author 2", "content 2");
+            //Create("title 2", "author 2", "content 2");
             //Update(15, "title", "author", "content");
             //Delete(15);
         }

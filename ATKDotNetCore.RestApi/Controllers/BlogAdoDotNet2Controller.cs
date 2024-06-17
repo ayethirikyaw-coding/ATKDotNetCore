@@ -1,11 +1,6 @@
-﻿using ATKDotNetCore.ConsoleApp.Services;
-using ATKDotNetCore.RestApi.Models;
-using Microsoft.AspNetCore.Http;
+﻿using ATKDotNetCore.RestApi.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
-using System.Data.SqlClient;
 using ATKDotNetCore.Shared;
-using System.Reflection.Metadata;
 
 namespace ATKDotNetCore.RestApi.Controllers
 {
@@ -13,7 +8,15 @@ namespace ATKDotNetCore.RestApi.Controllers
     [ApiController]
     public class BlogAdoDotNet2Controller : ControllerBase
     {
-        private readonly AdoDotNetService _adoDotNetService = new AdoDotNetService(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+        //private readonly AdoDotNetService _adoDotNetService = new
+        //AdoDotNetService(ConnectionStrings.sqlConnectionStringBuilder.ConnectionString);
+
+        private readonly AdoDotNetService _adoDotNetService;
+
+        public BlogAdoDotNet2Controller(AdoDotNetService adoDotNetService)
+        {
+            _adoDotNetService = adoDotNetService;
+        }
 
         [HttpGet]
         public IActionResult GetBlogs()
