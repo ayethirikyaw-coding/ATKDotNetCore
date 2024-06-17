@@ -17,6 +17,7 @@ function getProductsCard() {
     if (cards.length == 0) {
         const message = `<h5>No product in cart</h5>`;
         $('.row').html(message);
+        totalAmountResult(0);
         return;
     }
 
