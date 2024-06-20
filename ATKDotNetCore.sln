@@ -35,7 +35,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATKDotNetCore.NLayer.Busine
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATKDotNetCore.NLayer.DataAccess", "ATKDotNetCore.NLayer.DataAccess\ATKDotNetCore.NLayer.DataAccess.csproj", "{A94B8B15-9CE4-4DD6-9BF0-723EE231D172}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATKDotNetCore.NLayer.UI", "ATKDotNetCore.NLayer.UI\ATKDotNetCore.NLayer.UI.csproj", "{D3E5E177-027D-4857-A5C6-BFB6C99AA9D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATKDotNetCore.NLayer.UI", "ATKDotNetCore.NLayer.UI\ATKDotNetCore.NLayer.UI.csproj", "{D3E5E177-027D-4857-A5C6-BFB6C99AA9D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATKDotNetCore.MinimalApi", "ATKDotNetCore.MinimalApi\ATKDotNetCore.MinimalApi.csproj", "{90624F08-A75C-41CC-8155-81224EB80F43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,10 @@ Global
 		{D3E5E177-027D-4857-A5C6-BFB6C99AA9D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3E5E177-027D-4857-A5C6-BFB6C99AA9D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3E5E177-027D-4857-A5C6-BFB6C99AA9D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90624F08-A75C-41CC-8155-81224EB80F43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90624F08-A75C-41CC-8155-81224EB80F43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90624F08-A75C-41CC-8155-81224EB80F43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90624F08-A75C-41CC-8155-81224EB80F43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
