@@ -16,7 +16,10 @@ namespace ATKDotNetCore.MvcApp.Controllers
 
         public async Task<IActionResult> Index()
         {
+            //select * from Tbl_Blog with (nolock)
+
             var lst = await _context.Blogs
+                .AsNoTracking()
                 .OrderByDescending(x => x.BlogId)
                 .ToListAsync();
             return View(lst);
@@ -54,7 +57,9 @@ namespace ATKDotNetCore.MvcApp.Controllers
         [ActionName("Update")]
         public async Task<IActionResult> BlogUpdate(int id, BlogModel blog)
         {
-            var item = await _context.Blogs.FirstOrDefaultAsync(x => x.BlogId == id);
+            var item = await _context.Blogs
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.BlogId == id);
             if (item is null)
             {
                 return Redirect("/Blog");
@@ -63,6 +68,8 @@ namespace ATKDotNetCore.MvcApp.Controllers
             item.BlogTitle = blog.BlogTitle;
             item.BlogAuthor = blog.BlogAuthor;
             item.BlogContent = blog.BlogContent;
+
+            _context.Entry(item).State = EntityState.Modified;
 
             await _context.SaveChangesAsync();
 
