@@ -16,7 +16,9 @@ namespace ATKDotNetCore.MvcApp.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var lst = await _context.Blogs.ToListAsync();
+            var lst = await _context.Blogs
+                .OrderByDescending(x => x.BlogId)
+                .ToListAsync();
             return View(lst);
         }
 
@@ -33,6 +35,53 @@ namespace ATKDotNetCore.MvcApp.Controllers
             await _context.Blogs.AddAsync(blog);
             var result = await _context.SaveChangesAsync();
             //return View("BlogCreate");
+            return Redirect("/Blog");
+        }
+
+        [HttpGet]
+        [ActionName("Edit")]
+        public async Task<IActionResult> BlogEdit(int id)
+        {
+            var item = await _context.Blogs.FirstOrDefaultAsync(x => x.BlogId == id);
+            if(item is null)
+            {
+                return Redirect("/Blog");
+            }
+            return View("BlogEdit", item);
+        }
+
+        [HttpPost]
+        [ActionName("Update")]
+        public async Task<IActionResult> BlogUpdate(int id, BlogModel blog)
+        {
+            var item = await _context.Blogs.FirstOrDefaultAsync(x => x.BlogId == id);
+            if (item is null)
+            {
+                return Redirect("/Blog");
+            }
+
+            item.BlogTitle = blog.BlogTitle;
+            item.BlogAuthor = blog.BlogAuthor;
+            item.BlogContent = blog.BlogContent;
+
+            await _context.SaveChangesAsync();
+
+            return Redirect("/Blog");
+        }
+
+        [HttpGet]
+        [ActionName("Delete")]
+        public async Task<IActionResult> BlogDelete(int id)
+        {
+            var item = await _context.Blogs.FirstOrDefaultAsync(x => x.BlogId == id);
+            if (item is null)
+            {
+                return Redirect("/Blog");
+            }
+
+            _context.Blogs.Remove(item);
+            await _context.SaveChangesAsync();
+
             return Redirect("/Blog");
         }
     }
