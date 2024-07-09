@@ -15,3 +15,9 @@ public class BlogModel
 
     public string? BlogContent { get; set; }
 }
+
+public class BlogMessageResponseModel
+{
+    public bool IsSuccess { get; set; }
+    public string Message { get; set; }
+}
