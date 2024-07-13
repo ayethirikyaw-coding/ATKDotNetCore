@@ -1,4 +1,4 @@
-﻿namespace ATKDotNetCore.MvcChartApp.Models;
+﻿namespace ATKDotNetCore.MvcChartApp.Models.ChartJs;
 
 public class PolarAreaChartModel
 {

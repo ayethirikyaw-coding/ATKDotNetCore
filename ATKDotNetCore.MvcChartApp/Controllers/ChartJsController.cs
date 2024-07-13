@@ -1,4 +1,4 @@
-﻿using ATKDotNetCore.MvcChartApp.Models;
+﻿using ATKDotNetCore.MvcChartApp.Models.ChartJs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ATKDotNetCore.MvcChartApp.Controllers;
