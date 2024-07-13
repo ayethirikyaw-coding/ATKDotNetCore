@@ -1,0 +1,44 @@
+﻿@model PolarAreaChartModel
+
+<div>
+    <canvas id="myChart"></canvas>
+</div>
+
+@section scripts {
+    <script>
+        const _dataset = @Html.Raw(JsonConvert.SerializeObject(Model.Dataset));
+        const _labels = @Html.Raw(JsonConvert.SerializeObject(Model.Labels));
+
+        const data = {
+            labels: _labels,
+            datasets: [
+                {
+                    label: _dataset.Label,
+                    data: _dataset.Data,
+                    backgroundColor: _dataset.BackgroundColor
+                }
+            ]
+        };
+
+        const config = {
+            type: 'polarArea',
+            data: data,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Chart.js Polar Area Chart'
+                    }
+                }
+            },
+        };
+
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, config);
+    </script>
+}
