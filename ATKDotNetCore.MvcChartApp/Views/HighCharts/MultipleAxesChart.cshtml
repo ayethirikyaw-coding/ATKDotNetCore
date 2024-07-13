@@ -1,0 +1,136 @@
+﻿@model MultipleAxesChartModel
+
+<div id="container"></div>
+
+@section scripts {
+    <script>
+        const seriesList = @Html.Raw(JsonConvert.SerializeObject(Model.Axes));
+        let _series = seriesList.map(series => ({
+            name: series.Name,
+            type: series.Type,
+            yAxis: series.YAxis,
+            data: series.Data,
+            marker: (series.Marker != null) ? { enabled: series.Marker.Enabled } : { enabled: true },
+            dashStyle: (series.Dashstyle != null) ? series.Dashstyle : NaN,
+            tooltip: series.Tooltip
+        }));
+
+        Highcharts.chart('container', {
+            chart: {
+                zooming: {
+                    type: 'xy'
+                }
+            },
+            title: {
+                text: 'Average Monthly Weather Data for Tokyo',
+                align: 'left'
+            },
+            subtitle: {
+                text: 'Source: WorldClimate.com',
+                align: 'left'
+            },
+            xAxis: [{
+                categories: [
+                    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'
+                ],
+                crosshair: true
+            }],
+            yAxis: [{ // Primary yAxis
+                labels: {
+                    format: '{value}°C',
+                    style: {
+                        color: Highcharts.getOptions().colors[2]
+                    }
+                },
+                title: {
+                    text: 'Temperature',
+                    style: {
+                        color: Highcharts.getOptions().colors[2]
+                    }
+                },
+                opposite: true
+
+            }, { // Secondary yAxis
+                gridLineWidth: 0,
+                title: {
+                    text: 'Rainfall',
+                    style: {
+                        color: Highcharts.getOptions().colors[0]
+                    }
+                },
+                labels: {
+                    format: '{value} mm',
+                    style: {
+                        color: Highcharts.getOptions().colors[0]
+                    }
+                }
+
+            }, { // Tertiary yAxis
+                gridLineWidth: 0,
+                title: {
+                    text: 'Sea-Level Pressure',
+                    style: {
+                        color: Highcharts.getOptions().colors[1]
+                    }
+                },
+                labels: {
+                    format: '{value} mb',
+                    style: {
+                        color: Highcharts.getOptions().colors[1]
+                    }
+                },
+                opposite: true
+            }],
+            tooltip: {
+                shared: true
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                x: 80,
+                verticalAlign: 'top',
+                y: 55,
+                floating: true,
+                backgroundColor:
+                    Highcharts.defaultOptions.legend.backgroundColor || // theme
+                    'rgba(255,255,255,0.25)'
+            },
+            series: _series,
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            floating: false,
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom',
+                            x: 0,
+                            y: 0
+                        },
+                        yAxis: [{
+                            labels: {
+                                align: 'right',
+                                x: 0,
+                                y: -6
+                            },
+                            showLastLabel: false
+                        }, {
+                            labels: {
+                                align: 'left',
+                                x: 0,
+                                y: -6
+                            },
+                            showLastLabel: false
+                        }, {
+                            visible: false
+                        }]
+                    }
+                }]
+            }
+        });
+    </script>
+}
