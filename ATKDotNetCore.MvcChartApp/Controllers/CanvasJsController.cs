@@ -5,14 +5,23 @@ namespace ATKDotNetCore.MvcChartApp.Controllers
 {
     public class CanvasJsController : Controller
     {
-        public IActionResult LineChart()
+        private readonly ILogger<CanvasJsController> _logger;
+
+		public CanvasJsController(ILogger<CanvasJsController> logger)
+		{
+			_logger = logger;
+		}
+
+		public IActionResult LineChart()
         {
-            return View();
+			_logger.LogInformation("Line Chart...");
+			return View();
         }
 
         public IActionResult AxisLabelsTickInsidePlotArea()
         {
-            AxisLabelsTickInsidePlotAreaModel model = new AxisLabelsTickInsidePlotAreaModel();
+			_logger.LogInformation("Plot Area...");
+			AxisLabelsTickInsidePlotAreaModel model = new AxisLabelsTickInsidePlotAreaModel();
             List<AxisLabelsTickInsidePlotAreaDataPoints> dataPoints = new List<AxisLabelsTickInsidePlotAreaDataPoints>()
             {
                 new AxisLabelsTickInsidePlotAreaDataPoints
@@ -72,7 +81,8 @@ namespace ATKDotNetCore.MvcChartApp.Controllers
 
         public IActionResult WaterFallChart()
         {
-            WaterFallChartModel model = new WaterFallChartModel();
+			_logger.LogInformation("Water Fall Chart...");
+			WaterFallChartModel model = new WaterFallChartModel();
             model.data = new List<WaterFallData>()
             {
                 new WaterFallData()
