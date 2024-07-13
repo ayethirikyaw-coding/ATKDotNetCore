@@ -1,4 +1,4 @@
-﻿using ATKDotNetCore.MvcChartApp.Models;
+﻿using ATKDotNetCore.MvcChartApp.Models.ApexChart;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Security.Cryptography.Xml;
