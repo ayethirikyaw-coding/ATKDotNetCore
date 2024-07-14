@@ -1,8 +1,5 @@
 ﻿using ATKDotNetCore.MvcChartApp.Models.ApexChart;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Security.Cryptography.Xml;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ATKDotNetCore.MvcChartApp.Controllers
 {
@@ -31,5 +28,4 @@ namespace ATKDotNetCore.MvcChartApp.Controllers
             return View(model);
         }
     }
- 
 }
