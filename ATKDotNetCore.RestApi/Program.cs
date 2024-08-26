@@ -2,7 +2,21 @@ using ATKDotNetCore.RestApi.Db;
 using ATKDotNetCore.Shared;
 using Microsoft.EntityFrameworkCore;
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("https://localhost:7245",
+                                              "http://localhost:5215")
+                          .WithMethods("GET", "POST", "PUT", "PATCH", "DELETE")
+                          .AllowAnyHeader(); 
+                      });
+});
 
 // Add services to the container.
 
@@ -34,6 +48,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 
