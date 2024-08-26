@@ -1,0 +1,56 @@
+﻿@page "/blog";
+@inject HttpClient httpClient
+
+<PageTitle>Blog List</PageTitle>
+
+<h3>BlogPage</h3>
+
+<NavLink href="/blog/create" class="btn btn-primary" >New</NavLink>
+
+@if(_blogs is not null){
+    <table class="table table-responsive">
+        <thead>
+            <tr>
+                <th>No.</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (BlogModel item in _blogs)
+            {
+                <tr>
+                    <td>@(++count)</td>
+                    <td>@item.BlogTitle</td>
+                    <td>@item.BlogAuthor</td>
+                    <td>@item.BlogContent</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    int count = 0;
+    private List<BlogModel> _blogs = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var response = await httpClient.GetAsync("api/blog");
+        if (response.IsSuccessStatusCode)
+        {
+            var jsonStr = await response.Content.ReadAsStringAsync();
+            _blogs = JsonConvert.DeserializeObject<List<BlogModel>>(jsonStr)!;
+        }
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+
+        }
+    }
+}

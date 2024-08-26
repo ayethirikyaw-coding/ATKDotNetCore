@@ -55,7 +55,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATKDotNetCore.ConsoleAppEFC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATKDotNetCore.MvcDesignApp", "ATKDotNetCore.MvcDesignApp\ATKDotNetCore.MvcDesignApp.csproj", "{F5D4BB3E-758F-4C02-ADAE-F30E272A11E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATKDotNetCore.MvcApp2", "ATKDotNetCore.MvcApp2\ATKDotNetCore.MvcApp2.csproj", "{AB68F11C-244D-498A-AA7D-32734336CED7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATKDotNetCore.MvcApp2", "ATKDotNetCore.MvcApp2\ATKDotNetCore.MvcApp2.csproj", "{AB68F11C-244D-498A-AA7D-32734336CED7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATKDotNetCore.BlazorWasm2", "ATKDotNetCore.BlazorWasm2\ATKDotNetCore.BlazorWasm2.csproj", "{4596B6BE-1850-4773-BBD4-F4FDC639B86E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -159,6 +161,10 @@ Global
 		{AB68F11C-244D-498A-AA7D-32734336CED7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB68F11C-244D-498A-AA7D-32734336CED7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB68F11C-244D-498A-AA7D-32734336CED7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4596B6BE-1850-4773-BBD4-F4FDC639B86E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4596B6BE-1850-4773-BBD4-F4FDC639B86E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4596B6BE-1850-4773-BBD4-F4FDC639B86E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4596B6BE-1850-4773-BBD4-F4FDC639B86E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
