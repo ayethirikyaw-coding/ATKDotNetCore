@@ -1,0 +1,75 @@
+﻿@model List<BlogEntity>
+@{
+    int count = 0;
+}
+<a href="/blog/create" class="btn btn-primary">New</a>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th></th>
+            <th>No.</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Content</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-warning" href="/Blog/Edit?blogId=@item.BlogId">Edit</a>
+                    <button class="btn btn-danger btnDelete" data-blog-id="@item.BlogId">Delete</button>
+                    @* Controller/action/id *@
+                    @* <a href="/Blog/Edit?id=@item.BlogId&name="></a> *@
+                </td>
+                <td>@(++count)</td>
+                <td>@item.BlogTitle</td>
+                <td>@item.BlogAuthor</td>
+                <td>@item.BlogContent</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts {
+    <script>
+        $('.btnDelete').click(function (e) {
+            e.preventDefault();
+            let isConfirm = confirm("Are you sure want to delete?");
+
+            if (!isConfirm) return;
+
+            const blogId = $(this).data('blog-id');
+
+            let _blog = {
+                BlogId : blogId
+            };
+
+            $.ajax({
+                url: "/Blog/Delete", // /blog/update/id
+                //    data: JSON.stringify(empObj),
+                data: { blog: _blog },
+                type: "POST",
+                //    contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+
+                    if (!result.IsSuccess) {
+                        console.log(result.Message);
+                    }
+
+                    location.href = "/blog";
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        })
+
+    </script>
+}
+

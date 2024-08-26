@@ -1,0 +1,58 @@
+﻿<h2>New Blog</h2>
+
+<div class="mb-3">
+    <label class="form-label">Title</label>
+    <input type="text" class="form-control" id="txtTitle">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Author</label>
+    <input type="text" class="form-control" id="txtAuthor">
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Content</label>
+    <input type="text" class="form-control" id="txtContent">
+</div>
+
+<a href="/Blog" class="btn btn-dark">Cancel</a>
+<button type="button" class="btn btn-success" id="btnSave">Save</button>
+
+@section scripts{
+    <script>
+        $('#btnSave').click(function (e) {
+            e.preventDefault();
+            const title = $('#txtTitle').val();
+            const author = $('#txtAuthor').val();
+            const content = $('#txtContent').val();
+
+            let _blog = {
+                BlogTitle: title,
+                BlogAuthor: author,
+                BlogContent: content
+            };
+
+            $.ajax({
+                url: "/Blog/Save",
+                //    data: JSON.stringify(empObj),
+                data: { blog: _blog },
+                type: "POST",
+                //    contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+
+                    if(!result.IsSuccess){
+                        console.log(result.Message);
+                    }
+
+                    location.href = "/blog";
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        })
+
+    </script>
+}
