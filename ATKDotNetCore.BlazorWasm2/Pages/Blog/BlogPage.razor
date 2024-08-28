@@ -1,5 +1,7 @@
 ﻿@page "/blog";
 @inject HttpClient httpClient
+@inject NavigationManager nav
+@inject IJSRuntime jsRuntime
 
 <PageTitle>Blog List</PageTitle>
 
@@ -7,11 +9,32 @@
 
 <NavLink href="/blog/create" class="btn btn-primary" >New</NavLink>
 
+@if (_blog is not null)
+{
+    <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" @bind-value="_blog.BlogTitle">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Author</label>
+        <input type="text" class="form-control" @bind-value="_blog.BlogAuthor">
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Content</label>
+        <input type="text" class="form-control" @bind-value="_blog.BlogContent">
+    </div>
+
+    <button type="button" class="btn btn-dark">Cancel</button>
+    <button type="submit" class="btn btn-success" @onclick="Update">Update</button>
+}
+
 @if(_blogs is not null){
     <table class="table table-responsive">
         <thead>
             <tr>
-                <th>No.</th>
+                <th>Id</th>
                 <th>Title</th>
                 <th>Author</th>
                 <th>Content</th>
@@ -21,8 +44,14 @@
         <tbody>
             @foreach (BlogModel item in _blogs)
             {
+                var editLink = $"/blog/edit/{item.BlogId}";
                 <tr>
-                    <td>@(++count)</td>
+                    <td>
+                        <button type="button" class="btn btn-outline-danger" @onclick="() => Delete(item.BlogId)">Delete</button>
+                        @* <NavLink href="@editLink" class="btn btn-outline-warning">Edit</NavLink> *@
+                        <button type="button" class="btn btn-outline-warning" @onclick="() => Edit(item.BlogId)">Edit</button>
+                    </td>
+                    <td>@item.BlogId</td>
                     <td>@item.BlogTitle</td>
                     <td>@item.BlogAuthor</td>
                     <td>@item.BlogContent</td>
@@ -35,8 +64,14 @@
 @code {
     int count = 0;
     private List<BlogModel> _blogs = null;
+    private BlogModel? _blog = null;
 
     protected override async Task OnInitializedAsync()
+    {
+        await List();
+    }
+
+    private async Task List()
     {
         var response = await httpClient.GetAsync("api/blog");
         if (response.IsSuccessStatusCode)
@@ -52,5 +87,45 @@
         {
 
         }
+    }
+
+    public async Task Update()
+    {
+        var jsonBlog = JsonConvert.SerializeObject(_blog);
+        HttpContent httpContent = new StringContent(jsonBlog, Encoding.UTF8, Application.Json);
+        var response = await httpClient.PutAsync($"api/blog/{_blog.BlogId}", httpContent);
+        if (response.IsSuccessStatusCode)
+        {
+            string jsonStr = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(jsonStr);
+            _blog = null;
+            await List();
+        }
+    }
+
+    public async Task Edit(int id)
+    {
+        var response = await httpClient.GetAsync($"api/blog/{id}");
+        if (!response.IsSuccessStatusCode) return;
+
+        var jsonStr = await response.Content.ReadAsStringAsync();
+        _blog = JsonConvert.DeserializeObject<BlogModel>(jsonStr)!;
+    }
+
+    public void Cancel()
+    {
+        _blog = null;
+    }
+
+    public async Task Delete(int id)
+    {
+        var confirm = await jsRuntime.InvokeAsync<bool>("confirm", "Are you sure to delete?");
+        if (!confirm) return;
+        var response = await httpClient.DeleteAsync($"api/blog/{id}");
+        if (!response.IsSuccessStatusCode) return;
+
+        var message = await response.Content.ReadAsStringAsync();
+        await jsRuntime.InvokeVoidAsync("alert", message);
+        await List();
     }
 }

@@ -57,7 +57,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATKDotNetCore.MvcDesignApp"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATKDotNetCore.MvcApp2", "ATKDotNetCore.MvcApp2\ATKDotNetCore.MvcApp2.csproj", "{AB68F11C-244D-498A-AA7D-32734336CED7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATKDotNetCore.BlazorWasm2", "ATKDotNetCore.BlazorWasm2\ATKDotNetCore.BlazorWasm2.csproj", "{4596B6BE-1850-4773-BBD4-F4FDC639B86E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ATKDotNetCore.BlazorWasm2", "ATKDotNetCore.BlazorWasm2\ATKDotNetCore.BlazorWasm2.csproj", "{4596B6BE-1850-4773-BBD4-F4FDC639B86E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
