@@ -1,6 +1,7 @@
 ﻿@page "/blog/edit/{id:int}";
 @inject HttpClient httpClient
 @inject NavigationManager nav
+@inject IJSRuntime jsRuntime
 
 <PageTitle>New Blog</PageTitle>
 
@@ -44,6 +45,7 @@
             }
             var jsonStr = await response.Content.ReadAsStringAsync();
             _blog = JsonConvert.DeserializeObject<BlogModel>(jsonStr)!;
+            StateHasChanged();
         }
     }
 
@@ -54,10 +56,9 @@
         var response = await httpClient.PutAsync($"api/blog/{id}", httpContent);
         if (response.IsSuccessStatusCode)
         {
-            string jsonStr = await response.Content.ReadAsStringAsync();
-            Console.WriteLine(jsonStr);
+            string message = await response.Content.ReadAsStringAsync();
+            await jsRuntime.InvokeVoidAsync("alert", message);
             nav.NavigateTo("/blog");
         }
-    }
-    
+    }   
 }
